@@ -24,11 +24,3 @@ spl_autoload_register(function ($className) {
 
 $config    = Config::getInstance();
 $structure = Structure::getInstance();
-
-//$langDir     = __DIR__ . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, array('..', 'langs')) . DIRECTORY_SEPARATOR;
-//$defaultLang = 'de';
-//
-//$toTranslate = array(
-//    'en' => 'Englisch',
-//    'tr' => 'Türkisch',
-//    'bs' => 'Bosnisch');
