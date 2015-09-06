@@ -1,15 +1,28 @@
-#container {
-    max-width:                  1000px;
-    background-color:           #fff;
-    margin:                     0 auto;
-    border:                     1px solid #eee;
-    border-top:                 none;
-    border-bottom-right-radius: 1em;
-    border-bottom-left-radius:  1em;
+.centeredContainer {
+    margin:    0 auto;
+    max-width: 75em;
+    padding:   0 1em;
 }
 
-#content, #footer {
+#container {
+    background-color:           #fff;
+    border:                     1px solid #eee;
+    border-bottom-left-radius:  1em;
+    border-bottom-right-radius: 1em;
+    border-top:                 none;
+}
+
+#header, #content, #footer {
     padding: 1em 2em;
+}
+
+#headerContainer {
+    background-color: #f5f5f5;
+    border-bottom:    1px solid #e5e5e5;
+}
+
+#header h1 {
+    margin: 0;
 }
 
 #content > *:first-child {
@@ -22,8 +35,8 @@
 
 #footer {
     border-top: 1px solid #eee;
-    font-size:  0.75em;
     color:      #767676;
+    font-size:  0.75em;
 }
 
 #footer iframe {

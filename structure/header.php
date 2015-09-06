@@ -10,5 +10,11 @@
     <link href="<?= URI_CSS ?>structure.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-    <div id="container">
-        <div id="content">
+    <div id="headerContainer">
+        <div class="centeredContainer">
+            <div id="header"><h1>Android Open Translation Platform</h1></div>
+        </div>
+    </div>
+    <div class="centeredContainer">
+        <div id="container">
+            <div id="content">

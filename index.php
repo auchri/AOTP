@@ -4,10 +4,7 @@ require_once 'config/main.php';
 
 $structure->includeHeader("Test");
 ?>
-
-    <h1>Android Open Translation Platform</h1>
-
-    <h2>Dateien</h2>
+    <h1>Files</h1>
 <?php
 
 $files                    = array();

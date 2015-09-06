@@ -7,6 +7,7 @@
         href="<?= URI_ROOT ?>LICENSE">GPL v3</a>
 </div>
 </div>
+</div>
 <!-- Javascript's -->
 <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 </body>
