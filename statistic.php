@@ -1,6 +1,6 @@
 <?php
 
-include 'conf.php';
+include 'main.php';
 
 $langPath = $langDir . $defaultLang . DIRECTORY_SEPARATOR;
 

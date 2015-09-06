@@ -1,6 +1,6 @@
 <?php
 
-include 'conf.php';
+require_once 'config/main.php';
 
 $language        = isset($_GET['language']) ? trim($_GET['language']) : '';
 $langFile        = isset($_GET['file']) ? $langDir . $language . DIRECTORY_SEPARATOR . trim($_GET['file']) : '';
@@ -46,7 +46,7 @@ $translatedStrings = getStringsFromFile($langFile);
             <td><?= $string ?></td>
             <td><?= $translatedString ?></td>
         </tr>
-    <?php
+        <?php
     }
 
     ?>
