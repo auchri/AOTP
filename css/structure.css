@@ -4,15 +4,28 @@
     margin:                     0 auto;
     border:                     1px solid #eee;
     border-top:                 none;
-    padding:                    1em 2em;
     border-bottom-right-radius: 1em;
     border-bottom-left-radius:  1em;
 }
 
-#container > *:first-child {
+#content, #footer {
+    padding: 1em 2em;
+}
+
+#content > *:first-child {
     margin-top: 0 !important;
 }
 
-#container > *:last-child {
+#content > *:last-child {
     margin-bottom: 0 !important;
+}
+
+#footer {
+    border-top: 1px solid #eee;
+    font-size:  0.75em;
+    color:      #767676;
+}
+
+#footer iframe {
+    vertical-align: middle;
 }
