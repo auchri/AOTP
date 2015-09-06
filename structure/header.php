@@ -12,7 +12,7 @@
 <body>
     <div id="headerContainer">
         <div class="centeredContainer">
-            <div id="header"><h1>Android Open Translation Platform</h1></div>
+            <div id="header"><h1><a href="<?= URI_ROOT ?>">Android Open Translation Platform</a></h1></div>
         </div>
     </div>
     <div class="centeredContainer">
