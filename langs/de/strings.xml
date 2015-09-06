@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="test">Test-String</string>
+    <string name="test2">äaTest</string>
+</resources>
