@@ -10,9 +10,10 @@ $structure->includeHeader("Test");
     <h2>Dateien</h2>
 <?php
 
-$files    = array();
-$langPath = $langDir . $defaultLang . DIRECTORY_SEPARATOR;
-foreach (new DirectoryIterator($langPath) as $langFile) {
+$files                    = array();
+$defaultLanguageDirectory = $config->getDefaultLanguageDirectory();
+
+foreach (new DirectoryIterator($defaultLanguageDirectory) as $langFile) {
     if ($langFile->isDot()) continue;
 
     if ($langFile->isFile()) {

@@ -32,4 +32,8 @@ class Config
 
         return self::$instance;
     }
+
+    public function getDefaultLanguageDirectory() {
+        return DIR_LANGUAGES . $this->getValue(self::KEY_DEFAULT_LANG) . DIRECTORY_SEPARATOR;
+    }
 }
