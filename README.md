@@ -7,9 +7,10 @@ A open platform for translating Android Apps.
 Official website with the latest stable version: [translate.auerchri.at][website_stable]
 
 ## Branches
-`master` branch contains the latest stable version
-
-`develop` branch contains the current develop (unstable) version
+* [`master`][branch_master] branch contains the latest stable version
+* [`develop`][branch_develop] branch contains the current develop (unstable) version
 
 [//]: # (LINKS)
 [website_stable]: http://translate.auerchri.at
+[branch_master]: https://github.com/auchri/AOTP/tree/master
+[branch_develop]: https://github.com/auchri/AOTP/tree/develop
