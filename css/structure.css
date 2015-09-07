@@ -50,35 +50,3 @@
 #footer iframe {
     vertical-align: middle;
 }
-
-/* ALERT BOXES */
-.alert-box {
-    border-radius: 0.3em;
-    margin-bottom: 1em;
-    padding:       1em;
-}
-
-.alert-box span {
-    font-weight:    bold;
-    text-transform: uppercase;
-}
-
-.error {
-    background: #ffecec;
-    border:     1px solid #f5aca6;
-}
-
-.success {
-    background: #e9ffd9;
-    border:     1px solid #a6ca8a;
-}
-
-.warning {
-    background: #fff8c4;
-    border:     1px solid #f2c779;
-}
-
-.notice {
-    background: #e3f7fc;
-    border:     1px solid #8ed9f6;
-}
