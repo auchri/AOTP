@@ -48,4 +48,8 @@ class Common extends Singleton
         self::sendResponseCode(307);
         self::sendHeader('Location: ' . $url);
     }
+
+    public static function sanitizeString($value) {
+        return trim(html_entity_decode($value, ENT_QUOTES, 'UTF-8'));
+    }
 }
