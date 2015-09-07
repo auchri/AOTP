@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= $title ?> | AOTP</title>
+    <title><?= $title ?></title>
     <meta charset="UTF-8"/>
     <meta name="description" content="AOTP"/>
 
