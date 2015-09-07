@@ -10,6 +10,11 @@ class LanguageFile
     private $filename;
 
     /**
+     * @var int Number of strings in this file
+     */
+    private $nStrings;
+
+    /**
      * @var string Language of the file
      */
     private $language;
@@ -40,6 +45,20 @@ class LanguageFile
      */
     public function setFilename($filename) {
         $this->filename = $filename;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNStrings() {
+        return $this->nStrings;
+    }
+
+    /**
+     * @param int $nStrings
+     */
+    public function setNStrings($nStrings) {
+        $this->nStrings = $nStrings;
     }
 
     /**
