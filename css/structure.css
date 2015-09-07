@@ -50,3 +50,9 @@
 #footer iframe {
     vertical-align: middle;
 }
+
+.ok { color: #090; }
+
+.warning { color: #f90; }
+
+.error { color: #c00; }
