@@ -46,13 +46,6 @@ table {
     margin-bottom: 1em;
 }
 
-table {
-    display:    block;
-    width:      100%;
-    overflow:   auto;
-    word-break: keep-all;
-}
-
 table th, table td {
     padding: 0.4em 0.8em;
     border:  1px solid #ddd;
