@@ -38,6 +38,10 @@ ul {
     padding-left:  2em;
 }
 
+p {
+    margin-bottom: 1em;
+}
+
 table {
     display:       block;
     margin-bottom: 1em;
