@@ -63,7 +63,7 @@ arsort($langStrings);
         ?>
     </ul>
 
-    <a href="/">Zurück</a>
+    <a href="/">Back</a>
 
 <?php
 $structure->includeFooter();
