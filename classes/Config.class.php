@@ -2,12 +2,10 @@
 
 namespace AOTP;
 
-class Config
+class Config extends Singleton
 {
     const KEY_DEFAULT_LANG = "default_lang";
     const KEY_TO_TRANSLATE = "to_translate";
-
-    private static $instance;
 
     private $config = array(
         self::KEY_DEFAULT_LANG => 'de',
@@ -19,18 +17,6 @@ class Config
 
     public function getValue($key) {
         return $this->config[$key];
-    }
-
-    private function __construct() {
-
-    }
-
-    public static function getInstance() {
-        if (self::$instance == null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     public function getDefaultLanguageDirectory() {
