@@ -33,6 +33,7 @@ a:hover, a:active {
 }
 
 ul {
-    list-style:   disc;
-    padding-left: 2em;
+    list-style:    disc;
+    padding-left:  2em;
+    margin-bottom: 1em;
 }
