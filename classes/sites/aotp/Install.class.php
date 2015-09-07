@@ -2,6 +2,7 @@
 
 namespace AOTP\sites\aotp;
 
+use AOTP\Alert;
 use AOTP\Config;
 use AOTP\Site;
 
@@ -13,11 +14,17 @@ class Install extends Site
     }
 
     function getOutput() {
+        ?>
+        <h1>Installation</h1>
+        <?php
         //TODO: Finish installation script (database)
         if (Config::getInstance()->isUserConfigured()) {
-            return 'Installation is already complete';
+            (new Alert(Alert::TYPE_WARNING, 'Installation is already complete!'))->show();
+            ?>
+            <a href="<?= URI_ROOT ?>">Back to start site</a>
+            <?php
         } else {
-            return 'Enter database credentials.....';
+            echo 'Enter database credentials.....';
         }
     }
 }
