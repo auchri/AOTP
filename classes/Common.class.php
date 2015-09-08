@@ -49,6 +49,33 @@ class Common extends Singleton
         self::sendHeader('Location: ' . $url);
     }
 
+    /**
+     * Adds the give query parameter to the actual uri
+     *
+     * @param $name  string
+     * @param $value string
+     */
+    public static function redirectToQuery($name, $value) {
+        self::redirectToQueries(array($name => $value));
+    }
+
+    /**
+     * Redirects to a set of query parameters: [name => value, name2 => value2]
+     *
+     * @param array $array
+     */
+    public static function redirectToQueries(array $array) {
+        $parameters = array();
+        $parsedUrl  = parse_url($_SERVER['REQUEST_URI']);
+        if (isset($parsedUrl['query'])) {
+            parse_str($parsedUrl['query'], $parameters);
+        }
+
+        $parameters = array_merge($parameters, $array);
+
+        self::redirect(URI_ROOT . 'index.php?' . http_build_query($parameters));
+    }
+
     public static function sanitizeString($value) {
         return trim(html_entity_decode($value, ENT_QUOTES, 'UTF-8'));
     }
