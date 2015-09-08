@@ -47,6 +47,7 @@ class Router
         if (!($site instanceof Site)) {
             throw new \UnexpectedValueException('Class ' . $className . ' should ba an instance of AOTP\Site');
         } else {
+            $site->prepare();
             ob_start();
             $output = $site->getOutput();
 
