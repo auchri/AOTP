@@ -37,7 +37,6 @@ class Router
     }
 
     public function route($module, $site) {
-        $test = Config::getInstance()->isUserConfigured();
         if (!Config::getInstance()->isUserConfigured() && ($module != self::$installSite[self::PARAM_MODULE] || $site != self::$installSite[self::PARAM_SITE])) {
             Common::redirect(URI_ROOT . 'index.php?' . http_build_query(self::$installSite));
         }
