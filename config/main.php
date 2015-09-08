@@ -6,6 +6,7 @@ define('NS_ROOT', 'AOTP\\');
 define('NS_SITES', NS_ROOT . 'sites\\');
 
 define('DIR_ROOT', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
+define('DIR_INSTALLATION', DIR_ROOT . 'installation' . DIRECTORY_SEPARATOR);
 define('DIR_CONFIG', DIR_ROOT . 'config' . DIRECTORY_SEPARATOR);
 define('DIR_CONFIG_TEMPLATES', DIR_CONFIG . 'templates' . DIRECTORY_SEPARATOR);
 define('DIR_CLASSES', DIR_ROOT . 'classes' . DIRECTORY_SEPARATOR);
