@@ -15,22 +15,42 @@ use AOTP\Site;
  */
 class Install extends Site
 {
+    private $step;
+    private $errorMessage = '';
 
-    function getTitle() {
+    const KEY_STEP = 'step';
+    const STEP_DATABASE = 1;
+
+    const STEP_COMPLETE = 9999;
+
+    public function prepare() {
+        if (!Config::getInstance()->isUserConfigured() &&
+            (!isset($_GET[self::KEY_STEP]) || !is_numeric($_GET[self::KEY_STEP]) || $_GET[self::KEY_STEP] < self::STEP_DATABASE)
+        ) {
+            Common::redirectToQuery(self::KEY_STEP, self::STEP_DATABASE);
+        }
+
+        $this->step = $_GET[self::KEY_STEP];
+
+        if (isset($_POST['s'])) {
+            $this->handlePost();
+        }
+    }
+
+    public function getTitle() {
         return 'Installation';
     }
 
-    function getOutput() {
+    public function getOutput() {
         ?>
         <h1>Installation</h1>
         <?php
-        //TODO: Finish installation script (database)
-        if (Config::getInstance()->isUserConfigured()) {
+        if (Config::getInstance()->isUserConfigured() && $this->step != self::STEP_COMPLETE) {
             (new Alert(Alert::TYPE_WARNING, 'Installation is already complete!'))->show();
             ?>
             <a class="button" href="<?= URI_ROOT ?>">&laquo; Back to start site</a>
             <?php
-        } else {
+        } else if ($this->step == self::STEP_DATABASE) {
             ?>
             <p><strong>Database credentials</strong></p>
             <?php
@@ -40,14 +60,14 @@ class Install extends Site
             $database = '';
 
             if (isset($_POST['s'])) {
-                $this->handlePost();
-                $host     = isset($_POST['database_host']) ? Common::getInstance()->sanitizeString($_POST['database_host']) : '';
-                $username = isset($_POST['database_user']) ? Common::getInstance()->sanitizeString($_POST['database_user']) : '';
-                $password = isset($_POST['database_password']) ? Common::getInstance()->sanitizeString($_POST['database_password']) : '';
-                $database = isset($_POST['database_name']) ? Common::getInstance()->sanitizeString($_POST['database_name']) : '';
+                echo $this->errorMessage;
+                $host     = isset($_POST['database_host']) ? Common::sanitizeString($_POST['database_host']) : '';
+                $username = isset($_POST['database_user']) ? Common::sanitizeString($_POST['database_user']) : '';
+                $password = isset($_POST['database_password']) ? Common::sanitizeString($_POST['database_password']) : '';
+                $database = isset($_POST['database_name']) ? Common::sanitizeString($_POST['database_name']) : '';
             }
             ?>
-            <form method="post">
+            <form method="post" autocomplete="off">
                 <label><span>Host:</span><input type="text" name="database_host" value="<?= $host ?>"></label>
                 <label><span>Username:</span><input type="text" name="database_user" value="<?= $username ?>"></label>
                 <label><span>Password:</span><input type="password" name="database_password" value="<?= $password ?>"></label>
@@ -55,19 +75,35 @@ class Install extends Site
                 <input type="submit" value="Try to connect" name="s">
             </form>
             <?php
+        } else {
+            (new Alert(Alert::TYPE_SUCCESS, 'The installation is complete!'))->show();
+            ?>
+            <a class="button" href="<?= URI_ROOT ?>">Go to start site</a>
+            <?php
         }
     }
 
+    /**
+     * Validates the post data
+     */
     private function handlePost() {
-        $data = $this->getDatabaseData();
-        if (count($data) == 0) {
-            (new Alert(Alert::TYPE_ERROR, 'Please fill out all fields!'))->show();
-        } else {
-            $checkValue = $this->isDatabaseDataOk($data);
-            if ($checkValue === true) {
-                // TODO: Save data to file
+        if ($this->step == self::STEP_DATABASE) {
+            $data = $this->getDatabaseData();
+            if (count($data) == 0) {
+                $this->errorMessage = (new Alert(Alert::TYPE_ERROR, 'Please fill out all fields!'))->getHtml();
             } else {
-                (new Alert(Alert::TYPE_ERROR, 'The connection to the database failed<br><em>' . $checkValue . '</em>'))->show();
+                $checkValue = $this->isDatabaseDataOk($data);
+                if ($checkValue !== true) {
+                    $this->errorMessage = (new Alert(Alert::TYPE_ERROR, 'The connection to the database failed<br><em>' . $checkValue . '</em>'))->getHtml();
+                } else {
+                    Config::getInstance()->createConfigFileWithValue('user.php', array(
+                        '{db_host}'     => $data['host'],
+                        '{db_user}'     => $data['username'],
+                        '{db_password}' => $data['password'],
+                        '{db_name}'     => $data['database']
+                    ));
+                    Common::redirectToQuery(self::KEY_STEP, self::STEP_COMPLETE);
+                }
             }
         }
     }
@@ -79,8 +115,7 @@ class Install extends Site
      *
      * @return bool|string Returns true if the connection is ok, otherwise the error message is returned
      */
-    private
-    function isDatabaseDataOk(array $data) {
+    private function isDatabaseDataOk(array $data) {
         try {
             Database::connect($data['host'], $data['username'], $data['password'], $data['database']);
         } catch (\PDOException $e) {
@@ -95,8 +130,7 @@ class Install extends Site
      *
      * @return array
      */
-    private
-    function getDatabaseData() {
+    private function getDatabaseData() {
         $host     = isset($_POST['database_host']) ? trim($_POST['database_host']) : '';
         $username = isset($_POST['database_user']) ? trim($_POST['database_user']) : '';
         $password = isset($_POST['database_password']) ? trim($_POST['database_password']) : '';
