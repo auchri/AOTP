@@ -23,7 +23,7 @@ class Router
 
         try {
             $this->routeFromArray($parameters);
-        } catch (\InvalidArgumentException $e) {
+        } catch (RoutingException $e) {
             Common::redirect(URI_ROOT . 'index.php?' . http_build_query(self::$indexSite));
         }
     }
@@ -32,7 +32,7 @@ class Router
         if (isset($array[self::PARAM_MODULE]) && isset($array[self::PARAM_SITE])) {
             $this->route($array[self::PARAM_MODULE], $array[self::PARAM_SITE]);
         } else {
-            throw new \InvalidArgumentException("Module or site is not set");
+            throw new RoutingException("Module or site is not set");
         }
     }
 
@@ -58,4 +58,9 @@ class Router
             FrontController::getInstance()->setContent($output);
         }
     }
+}
+
+class RoutingException extends \Exception
+{
+
 }
