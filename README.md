@@ -17,6 +17,8 @@ After that, you have two opportunities to install the platform:
 * Or install it manually:
   * Copy `config/templates/user.php` to `config/user.php`
   * Replace the placeholders in `config/user.php` with the real values
+  * Execute the SQL-commands from `installation/database.sql` on your database to create the tables
+  * Delete the `installation` folder
 
 
 [//]: # (LINKS)
