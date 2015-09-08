@@ -49,4 +49,26 @@ class Config extends Singleton
     public function getUserConfigFiles() {
         return $this->userConfigFiles;
     }
+
+    /**
+     * Creates a config file from the template and replaces the placeholders with the values
+     *
+     * @param string $name
+     * @param array  $values
+     */
+    public function createConfigFileWithValue($name, array $values) {
+        $templateFile = DIR_CONFIG_TEMPLATES . $name;
+        $realFile     = DIR_CONFIG . $name;
+
+        if (!Filesystem::fileExists($templateFile)) {
+            throw new \InvalidArgumentException('The give config file (' . $name . ') does not exist');
+        }
+
+        $templateContent = file_get_contents($templateFile);
+        $keys            = array_keys($values);
+        $values          = array_values($values);
+
+        $newContent = str_replace($keys, $values, $templateContent);
+        file_put_contents($realFile, $newContent);
+    }
 }
