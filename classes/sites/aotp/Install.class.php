@@ -6,6 +6,7 @@ use AOTP\Alert;
 use AOTP\Common;
 use AOTP\Config;
 use AOTP\Database;
+use AOTP\Filesystem;
 use AOTP\Site;
 
 /**
@@ -76,6 +77,7 @@ class Install extends Site
             </form>
             <?php
         } else {
+            Filesystem::deleteRecursive(DIR_INSTALLATION, true);
             (new Alert(Alert::TYPE_SUCCESS, 'The installation is complete!'))->show();
             ?>
             <a class="button" href="<?= URI_ROOT ?>">Go to start site</a>
@@ -96,12 +98,22 @@ class Install extends Site
                 if ($checkValue !== true) {
                     $this->errorMessage = (new Alert(Alert::TYPE_ERROR, 'The connection to the database failed<br><em>' . $checkValue . '</em>'))->getHtml();
                 } else {
+                    // Create config file
                     Config::getInstance()->createConfigFileWithValue('user.php', array(
                         '{db_host}'     => $data['host'],
                         '{db_user}'     => $data['username'],
                         '{db_password}' => $data['password'],
                         '{db_name}'     => $data['database']
                     ));
+
+                    // Create tables in database
+                    $databaseFile = DIR_INSTALLATION . 'database.sql';
+                    if (!Filesystem::fileExists($databaseFile)) {
+                        throw new \Exception('File "' . $databaseFile . '" does not exist');
+                    }
+                    $sql = file_get_contents($databaseFile);
+                    Database::getConnection()->query($sql);
+
                     Common::redirectToQuery(self::KEY_STEP, self::STEP_COMPLETE);
                 }
             }
