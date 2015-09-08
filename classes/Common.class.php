@@ -2,8 +2,11 @@
 
 namespace AOTP;
 
-class Common extends Singleton
+class Common
 {
+    private function __construct() {
+    }
+
     public static function sendHeader($header, $replace = true) {
         if (!headers_sent()) {
             header($header, $replace);
