@@ -61,7 +61,7 @@ class Config extends Singleton
         $realFile     = DIR_CONFIG . $name;
 
         if (!Filesystem::fileExists($templateFile)) {
-            throw new \InvalidArgumentException('The give config file (' . $name . ') does not exist');
+            throw new \InvalidArgumentException('The given config file (' . $name . ') does not exist');
         }
 
         $templateContent = file_get_contents($templateFile);
