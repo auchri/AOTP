@@ -4,11 +4,8 @@ namespace AOTP;
 
 class Router
 {
-    const PARAM_MODULE = 'module';
-    const PARAM_SITE = 'site';
-
-    private static $indexSite = array(self::PARAM_MODULE => 'AOTP', self::PARAM_SITE => 'Index');
-    private static $installSite = array(self::PARAM_MODULE => 'AOTP', self::PARAM_SITE => 'Install');
+    private static $indexSite = 'Index';
+    private static $installSite = 'Install';
 
     public function routeFromActualUri() {
         $this->routeFromUri($_SERVER['REQUEST_URI']);
@@ -24,21 +21,21 @@ class Router
         try {
             $this->routeFromArray($parameters);
         } catch (RoutingException $e) {
-            Common::redirect(URI_ROOT . 'index.php?' . http_build_query(self::$indexSite));
+            Common::redirect(Uri::getAOTPModuleUri(self::$indexSite));
         }
     }
 
     public function routeFromArray(array $array) {
-        if (isset($array[self::PARAM_MODULE]) && isset($array[self::PARAM_SITE])) {
-            $this->route($array[self::PARAM_MODULE], $array[self::PARAM_SITE]);
+        if (isset($array[Uri::PARAM_MODULE]) && isset($array[Uri::PARAM_SITE])) {
+            $this->route($array[Uri::PARAM_MODULE], $array[Uri::PARAM_SITE]);
         } else {
             throw new RoutingException("Module or site is not set");
         }
     }
 
     public function route($module, $site) {
-        if (!Config::getInstance()->isUserConfigured() && ($module != self::$installSite[self::PARAM_MODULE] || $site != self::$installSite[self::PARAM_SITE])) {
-            Common::redirect(URI_ROOT . 'index.php?' . http_build_query(self::$installSite));
+        if (!Config::getInstance()->isUserConfigured() && ($module != MODULE_AOTP || $site != self::$installSite)) {
+            Common::redirect(Uri::getAOTPModuleUri(self::$installSite));
         }
 
         $className = NS_SITES . $module . '\\' . $site;

@@ -16,6 +16,8 @@ define('DIR_STRUCTURE', DIR_ROOT . 'structure' . DIRECTORY_SEPARATOR);
 define('URI_ROOT', '/');
 define('URI_CSS', URI_ROOT . 'css/');
 
+define('MODULE_AOTP', 'AOTP');
+
 spl_autoload_register(function ($className) {
     $classPath = getClassPathFromName($className);
 
