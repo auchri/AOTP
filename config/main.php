@@ -17,18 +17,40 @@ define('URI_ROOT', '/');
 define('URI_CSS', URI_ROOT . 'css/');
 
 spl_autoload_register(function ($className) {
+    $classPath = getClassPathFromName($className);
+
+    if (doesClassExist($classPath)) {
+        /** @noinspection PhpIncludeInspection */
+        require_once($classPath);
+    }
+});
+
+/**
+ * Returns the file of the given class name
+ *
+ * @param string $className
+ *
+ * @return string
+ */
+function getClassPathFromName($className) {
     $prefix    = '---';
     $className = $prefix . $className;
     $className = str_replace($prefix . NS_ROOT, '', $className);
     $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
 
-    $classPath = DIR_CLASSES . $className . '.class.php';
+    return DIR_CLASSES . $className . '.class.php';
+}
 
-    if (file_exists($classPath) && is_file($classPath)) {
-        /** @noinspection PhpIncludeInspection */
-        require_once($classPath);
-    }
-});
+/**
+ * Checks if the given class exists
+ *
+ * @param string $classPath
+ *
+ * @return bool
+ */
+function doesClassExist($classPath) {
+    return file_exists($classPath) && is_file($classPath);
+}
 
 if (Config::getInstance()->isUserConfigured()) {
     $configFiles = Config::getInstance()->getUserConfigFiles();

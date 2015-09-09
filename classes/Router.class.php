@@ -42,7 +42,13 @@ class Router
         }
 
         $className = NS_SITES . $module . '\\' . $site;
-        $site      = new $className();
+        $classPath = getClassPathFromName($className);
+
+        if (!doesClassExist($classPath)) {
+            throw new \InvalidArgumentException('The class "' . $className . '" does not exist!');
+        }
+
+        $site = new $className();
 
         if (!($site instanceof Site)) {
             throw new \UnexpectedValueException('Class ' . $className . ' should ba an instance of AOTP\Site');
