@@ -1,11 +1,16 @@
 <?php
 
-namespace AOTP\sites\aotp;
+namespace AOTP\Sites\AOTP;
 
 use AOTP\Config;
-use AOTP\factories\LanguageFileFactory;
+use AOTP\Factories\LanguageFileFactory;
 use AOTP\Site;
 
+/**
+ * Class Index
+ *
+ * @package AOTP\Sites\AOTP
+ */
 class Index extends Site
 {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AOTP\sites\aotp;
+namespace AOTP\Sites\AOTP;
 
 use AOTP\Alert;
 use AOTP\Common;
@@ -12,7 +12,7 @@ use AOTP\Site;
 /**
  * Class for installing AOTP
  *
- * @package AOTP\sites\aotp
+ * @package AOTP\Sites\AOTP
  */
 class Install extends Site
 {

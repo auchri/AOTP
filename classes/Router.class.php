@@ -7,8 +7,8 @@ class Router
     const PARAM_MODULE = 'module';
     const PARAM_SITE = 'site';
 
-    private static $indexSite = array(self::PARAM_MODULE => 'aotp', self::PARAM_SITE => 'Index');
-    private static $installSite = array(self::PARAM_MODULE => 'aotp', self::PARAM_SITE => 'Install');
+    private static $indexSite = array(self::PARAM_MODULE => 'AOTP', self::PARAM_SITE => 'Index');
+    private static $installSite = array(self::PARAM_MODULE => 'AOTP', self::PARAM_SITE => 'Install');
 
     public function routeFromActualUri() {
         $this->routeFromUri($_SERVER['REQUEST_URI']);

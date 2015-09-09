@@ -1,6 +1,6 @@
 <?php
 
-namespace AOTP\factories;
+namespace AOTP\Factories;
 
 use AOTP\Config;
 use AOTP\LanguageFile;

@@ -3,7 +3,7 @@
 use AOTP\Config;
 
 define('NS_ROOT', 'AOTP\\');
-define('NS_SITES', NS_ROOT . 'sites\\');
+define('NS_SITES', NS_ROOT . 'Sites\\');
 
 define('DIR_ROOT', __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 define('DIR_INSTALLATION', DIR_ROOT . 'installation' . DIRECTORY_SEPARATOR);
