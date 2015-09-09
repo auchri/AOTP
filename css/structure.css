@@ -31,6 +31,32 @@
     text-decoration: none !important;
 }
 
+#header ul {
+    list-style: none;
+    margin:     0 0 0 1.5em;
+    padding:    0;
+}
+
+#header ul li {
+    display:     inline-block;
+    margin-left: 0.5em;
+}
+
+#header ul li a {
+    text-decoration: none !important;
+    padding:         0.75em;
+    color:           inherit;
+}
+
+#header ul li a:hover {
+    color: #4078c0;
+}
+
+#header > * {
+    display:        inline-block;
+    vertical-align: middle;
+}
+
 #content > *:first-child {
     margin-top: 0 !important;
 }
