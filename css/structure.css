@@ -10,6 +10,7 @@
     border-bottom-left-radius:  1em;
     border-bottom-right-radius: 1em;
     border-top:                 none;
+    margin-bottom:              1em;
 }
 
 #header, #content, #footerContainer {
